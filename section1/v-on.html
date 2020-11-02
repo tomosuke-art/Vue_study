@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+  <button id="clickEvent" onClick="btnClicked()">クリックしてね</button>
+
+  <!-- Ajax ページ読み込みなしで表示 -->
+  <form>
+    <button id="prevent" type="submit">送信</button> <!-- ページの再読み込み -->
+  </form>
+
+
+
+  <div id="app"> <!-- 仮装DOM -->
+  <!--     <button v-on:click="btnClicked">クリックしてね</button> -->    
+    <button @click="btnClicked">クリックしてね</button>
+    <button @click="btnClickedEvent">Eventクリックしてね</button>
+    <!-- 引数を取る場合 -->
+    <button @click="btnClickedArgs(1)">引数クリックしてね</button>
+  <!--   引数とイベントを同時に渡す -->
+    <button @click="btnClickedArgsEvent(1, $event)">引数Eventクリックしてね</button>
+
+  </div>  
+
+  <script>
+    let app = new Vue({
+      el: '#app', 
+      data(){ // 初期設定
+        return {
+          
+        }
+      },
+      methods:{ 
+        btnClicked(){
+          console.log('Vue クリックされた');
+        },
+        btnClickedEvent(e){
+          console.log(e);
+        },
+        btnClickedArgs(int){
+          console.log(int);
+        },
+        btnClickedArgsEvent(int, e){
+          console.log(int, e);
+        }
+      }
+    })
+
+    function btnClicked(){
+      console.log('JS クリックされた');
+    }
+
+    const clickEvent = document.getElementById('clickEvent');
+    clickEvent.addEventListener('click',(e) => {
+      console.log(e);
+    })
+
+    const prevent = document.getElementById('prevent')
+    prevent.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log(e);
+    })
+  </script>
+</body>
+</html>

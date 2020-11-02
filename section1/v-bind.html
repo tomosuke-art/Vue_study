@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app"> <!-- 仮装DOM -->
+     <div :style="{fontSize:fontSize}">Styleテスト</div>
+  </div>  
+  <script>
+    let app = new Vue({
+      el: '#app', // 仮装DOM 見た目とデータの分離
+      data(){ // 初期設定
+        return {
+        //  font-size:'20px' //ケバブケース
+          fontSize: '20px'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

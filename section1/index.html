@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+  <!-- リアルDOM  JSが紐づいているかどうかが分からない-->
+<!--   <a id="google_link">googleへのリンク</a> -->
+  <div id="app"> <!-- 仮装DOM -->
+    {{ message }}
+    <a :href="google">googleへのリンク</a>  <!-- v-bind,: = 紐づける -->
+    <br>
+    オブジェクト.キー
+    <a :href="book.url">{{ book.title }}</a>
+    <br>
+    <input v-bind="formInput">
+  </div>
+   
+  <script>
+    // Vueクラス->インスタンス化（実態） new
+    // Vue.jsのAPI
+    let app = new Vue({
+      el: '#app', // 仮装DOM 見た目とデータの分離
+      data(){ // 初期設定
+        return {
+          message: 'Hello Vue!', // キー(key):値(value)
+          google: 'https://google.com',
+          book: { // オブジェクトの中にオブジェクト
+            title: 'Amazonのサイトへ',
+            url: 'https://amazon.com'
+          },
+          formInput:{
+            name: 'your_name',
+            placeholder: '名前を入力してね'
+          }
+        }
+      }
+    })
+
+// 属性をつける
+    // const googleLink = document.getElementById('google_link');
+    // googleLink.href = "https://google.com";
+    
+  </script>
+</body>
+</html>

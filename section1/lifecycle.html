@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app"> <!-- 仮装DOM -->
+
+  </div>  
+
+  <script>
+    let app = new Vue({
+      el: '#app', 
+      data(){ // 初期設定
+        return {
+          test: 'あいみょん'
+        }
+      },
+      created(){  //非同期通信でデータを取得したい時
+        // $el=エレメント
+        console.log('created')
+        console.log(this.$el) // undifined
+        console.log(this.test)
+      },
+      mounted(){ // DOM生成のタイミング
+        console.log('mounted')
+        console.log(this.$el) // DOM要素の取得
+      }
+    })
+  </script>
+</body>
+</html>
