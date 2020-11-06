@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax</title>
+
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <div id="app"> <!-- 仮装DOM -->
+    <button @click="getDogImage">画像取得</button>
+    <img :src="dogImage"> <!-- v-bind -->
+  </div>  
+
+  <script>
+    // dog API この二つをfetchの引数にする
+    const url = 'https://dog.ceo/api/breeds/image/random'
+    const options = {
+      method: 'get'
+    }
+
+    let app = new Vue({
+      el: '#app', 
+      data(){ // 初期設定
+        return {
+           dogImage: ''
+        }
+      },
+      methods:{
+         // fetchAPIに情報を取りに行ってから処理実行
+        async getDogImage(){
+           const response = await fetch(url, options) //fetchで取得した値はPromiseオブジェクトになる
+           .then( response => response.json()) // JSON形式をオブジェクトに変換
+           //console.log(response.message) // URLの取得
+           this.dogImage = response.message
+        }
+      },
+      created(){ // 画面の読み込みのタイミングで関数が実行
+        this.getDogImage()
+      }
+    })
+  </script>
+  
+</body>
+</html>

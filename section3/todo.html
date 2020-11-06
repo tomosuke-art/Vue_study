@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDoList</title>
+  <style>
+    ul{
+      list-style: none; /* デフォルトの丸ぽちの削除 */
+    }
+    .done{
+      text-decoration: line-through; /* 横線 */
+    }
+  </style>
+</head>
+<body>
+  <div id="app"> <!-- 仮装DOM -->
+    <input type="text" v-model="newItem">
+    <button @click.prevent="addItem">追加</button><!-- prevent: 画面の再読み込みを防ぐ -->
+    <input v-model="query">検索
+
+    <ul>
+      <li v-for="(todo, index) in filteredList">  <!-- indexは削除時のため -->
+        <input type="checkbox" v-model="todo.isDone"> <!-- checkboxにチェックするとisDoneがtrueになる -->
+        <span :class="{done: todo.isDone }">{{ todo.item }}</span> <!-- :class="class名: classをつける条件" -->
+        <button @click="deleteItem(index)">削除</button>
+      </li>  
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el: '#app', 
+      data(){ // 初期設定
+        return {
+          newItem: '',
+          todos: [] ,
+          query: ''
+        }
+      },
+      methods:{
+        // 追加
+        addItem(){
+          // newItemに値が入っていたら追加
+          if(!this.newItem) return
+          const todo = {
+            item: this.newItem,
+            isDone: false,
+          }
+          //todoオブジェクトを配列に入れる
+          this.todos.push(todo)
+          this.newItem = '' // 追加した後、空にする
+        },
+        // 削除
+        deleteItem(index){ 
+          // spliceで配列の削除
+          this.todos.splice(index, 1)
+        }
+      },
+      // queryが変わったかどうか
+      computed:{
+        filteredList(){
+          let that = this // コールバックなのでthisの挙動が変わるためthatに入れる
+          return this.todos.filter( todo => {
+            return todo.item.indexOf(that.query) !== -1// indexOf: 文字列の検索 おきまりの書き方
+          })
+        }
+      }
+    })
+  </script>
+</body>
+</html>
