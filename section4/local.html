@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-components></my-components> <!-- 仮装DOM -->
+    <my-components></my-components> <!-- 仮装DOM -->
+    <my-components></my-components> <!-- 仮装DOM -->
+  </div>  
+  <script>
+    // globalと違う点
+    // 1.変数で作成する
+    // 2.componentsを作成
+
+    // あああ が３つ表示されている
+
+    let myComponents = {
+      template:`<div>
+      あああ
+      <div v-show="isShow">表示</div>
+      </div>`,
+      data(){
+        return {
+          isShow: false
+        }
+      }
+    }
+    // インスタンス化
+    let app = new Vue({
+      el: '#app', 
+      components: {
+        'my-components': myComponents
+      },
+      data(){ // 初期設定
+        return {
+          
+        }
+      }
+    })
+  </script>
+</body>
+</html>
