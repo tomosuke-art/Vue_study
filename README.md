@@ -1,4 +1,5 @@
 # Vue.jsの勉強備忘録（Udemy）
+Author: Tomotaro Nakagawa
 内容<br>
 ・VueJsを基礎からわかりやすく<br>
 ・ES6の文法をメインに<br>
