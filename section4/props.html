@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <style>
+    .perent{
+      width:800px;
+      margin: 0 auto;
+      border: 1px red solid;
+    }
+    .child{
+      width:30%;
+      margin: 0 auto;
+      border: 1px blue solid;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="perent">
+    <my-components title ="裸の心" class="child"></my-components> <!-- 仮装DOM -->
+    <my-components class="child"></my-components> <!-- 仮装DOM -->
+    <my-components class="child"></my-components> <!-- 仮装DOM -->
+  </div>  
+  <script>
+
+    let myComponents = {
+      template:`<div>
+      あいみょん
+      {{ getTitle}}
+      <div v-show="isShow">表示</div>
+      </div>`,
+      props:{ // propsの設定
+        title:{
+          type:String
+        },
+        disabled:{
+          type:Boolean,
+          default:false
+        }
+      },
+      data(){
+        return {
+          isShow: false,
+          getTitle: this.title // propsで入った値をdataにいれる
+        }
+      }
+    }
+    // インスタンス化
+    let app = new Vue({
+      el: '#app', 
+      components: {
+        'my-components': myComponents
+      },
+      data(){ // 初期設定
+        return {
+          
+        }
+      }
+    })
+  </script>
+</body>
+</html>

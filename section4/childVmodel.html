@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <style>
+    .parent{
+      width:800px;
+      margin: 0 auto;
+      border: 1px red solid;
+    }
+    .child{
+      width:30%;
+      margin: 0 auto;
+      border: 1px blue solid;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="parent">
+    <custom-input 
+    @child-event="parentValue = $event"
+    class="child"></custom-input>
+
+    {{ parentValue }}
+  </div>  
+  <script>
+    // 子側 v-model
+    let customInput = { 
+      template:`<div>
+      <input type="text" v-model="childParam">
+      </div>`,
+      data(){ // computedを使う為
+        return{
+          childValue:'' // 初期値
+        }
+      },
+      computed:{
+        childParam:{ // 監視したいプロパティ名
+          get(){ // return必須
+            return this.childValue
+          },
+          set(value){ //引数に新しい値 入力された値
+            this.childValue = value
+            this.$emit('child-event', value) // 子→親 入った値
+          }
+        }
+      }
+    }
+    // 親側
+    let app = new Vue({
+      el: '#app', 
+      components: {
+        customInput
+      },
+      data(){ // 初期設定
+        return {
+          parentValue:''
+        }
+      }
+    })
+  </script>
+ </body>
+</html>

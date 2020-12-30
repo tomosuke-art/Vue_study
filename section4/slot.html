@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <style>
+    .parent{
+      width:800px;
+      margin: 0 auto;
+      border: 1px red solid;
+    }
+    .child{
+      width:30%;
+      margin: 0 auto;
+      border: 1px blue solid;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="parent">
+    <child-component class="child">親の文字です</child-component>
+  </div>  
+  <script>
+    let childComponent = {
+      tempalte:`<div>
+      久保 <slot>南野</slot> 堂安</div>`
+    }
+    // 親側
+    let app = new Vue({
+      el: '#app', 
+      data(){ // 初期設定
+        return {
+        }
+      },
+      components:{
+        hildComponent
+      }
+    })
+  </script>
+ </body>
+</html>
