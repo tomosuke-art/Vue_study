@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.5.55/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.3.10/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    .red-b{
+      border: red 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <!-- 仮想DOM -->
+  <div id="app">   
+    <v-app>
+      <!-- appでヘッダーの範囲縮小 -->
+      <v-app-bar app>My Favorite Songs </v-app-bar>
+      <v-main>
+        <v-container fluid>
+          <v-row>
+            <!-- ボタンを押すとカードが表示 -->
+            <v-col class="red-b" cols="12" sm="6" md="4">
+              <v-btn @click="isShow = !isShow" 
+              color="primary">あいみょん </v-btn></v-col>
+            <v-col cols="12" md="4">
+              <v-card
+              v-show = "isShow"
+              class="mx-auto"
+              max-width="344"
+              outlined
+            >
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="overline mb-4">
+                    あいみょん ソング
+                  </div>
+                  <v-list-item-title class="headline mb-1">
+                    マリーゴールド
+                  </v-list-item-title>
+                  <v-list-item-subtitle>YouTube再生回数1億回突破！！</v-list-item-subtitle>
+                </v-list-item-content>
+          
+                <v-list-item-avatar
+                  tile
+                  size="80"
+                  color="grey"
+                ></v-list-item-avatar>
+              </v-list-item>
+          
+              <v-card-actions>
+                <v-btn
+                  outlined
+                  rounded
+                  text
+                >
+                  Button
+                </v-btn>
+              </v-card-actions>
+            </v-card></v-col>
+            <v-col cols="12" md="4">
+              <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="primary"
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  YOASOBI
+                </v-btn>
+              </template>
+              <span>Tooltip</span>
+            </v-tooltip></v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+      <v-footer>フッター</v-footer>
+    </v-app>
+  </div>
+<!-- Vue,Vuetifyの読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.3.10/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data(){
+        return {
+         isShow:false
+        }
+      }
+    })
+  </script>
+</body>
+</html>

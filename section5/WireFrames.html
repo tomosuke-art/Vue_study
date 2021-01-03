@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.5.55/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.3.10/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    .red-b{
+      border: red 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <!-- 仮想DOM -->
+  <v-app id="inspire">
+    <v-app-bar
+      app
+      shrink-on-scroll
+    >
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>My Application</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col
+            v-for="n in 24"
+            :key="n"
+            cols="4"
+          >
+            <v-card height="200">
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
+  </div>
+<!-- Vue,Vuetifyの読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.3.10/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#inspire',
+      vuetify: new Vuetify(),
+      data(){
+        return{
+          songs:["マリーゴールド","夢追いベンガル"]
+        }
+      }
+    })
+  </script>
+</body>
+</html>
